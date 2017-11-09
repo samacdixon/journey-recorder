@@ -1,0 +1,49 @@
+{
+  "name": "journey-recorder",
+  "version": "0.0.1",
+  "private": true,
+  "description": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Sam Dixon",
+  "dependencies": {
+    "EventEmitter": "^1.0.0",
+    "chrome-promise": "^2.1.0",
+    "classnames": "^2.2.5",
+    "jquery": "^3.2.1",
+    "react": "^15.5.0",
+    "react-chrome-redux": "1.4.0",
+    "react-dom": "^15.5.0",
+    "react-fontawesome": "^1.6.1",
+    "react-redux": "^4.0.0",
+    "react-shadow": "^2.1.0",
+    "react-svg": "^2.1.22",
+    "redux": "^3.0.4",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.2.0",
+    "unique-selector": "^0.3.6",
+    "uuid": "^3.1.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.24.1",
+    "babel-loader": "^7.0.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "css-loader": "^0.28.7",
+    "extract-text-webpack-plugin": "^3.0.1",
+    "file-loader": "^0.11.2",
+    "gulp": "^3.9.0",
+    "gulp-load-plugins": "^1.2.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-util": "^3.0.7",
+    "node-sass": "^4.5.3",
+    "react-hot-loader": "^1.3.1",
+    "rimraf": "^2.5.0",
+    "sass-loader": "^6.0.6",
+    "style-loader": "^0.18.2",
+    "url-loader": "^0.5.9",
+    "webpack": "^3.6.0",
+    "webpack-combine-loaders": "^2.0.3"
+  }
+}
