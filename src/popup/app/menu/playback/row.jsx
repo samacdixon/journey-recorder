@@ -11,8 +11,8 @@ class Playback extends Component {
     render() {
         return (
             <li className='row'>
-                <ReactSVG path={playIcon} />
                 <span>{this.props.journey.name}</span>
+                <ReactSVG path={playIcon} />
             </li>
         );
     }

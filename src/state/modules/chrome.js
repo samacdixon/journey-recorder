@@ -6,7 +6,7 @@ const CAPTURE_SCREENSHOT = 'alias/chrome/CAPTURE_SCREENSHOT';
 
 export const aliases = {
   [GET_TAB_ID]: (action) => {
-    action.promise = Promise.resolve();
+    action.promise = Promise.resolve({ payload: action._sender.tab.id });
     return action;
   },
   [CAPTURE_SCREENSHOT]: (action) => {

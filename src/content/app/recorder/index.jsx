@@ -96,7 +96,7 @@ class Recorder extends Component {
   }
 
   render() {
-    const session = this.activeSession();
+    const session = this.activeSession(); 
     if (!session) return null;
     if (this.isSaving(session)) return <Saver onCancel={this.props.reverseMode} onDiscard={this.props.endSession.bind(null, null)} onSave={this.props.endSession.bind(null, this.activeSession().steps)} />;
     else if (this.isStaging(session)) return <Stager step={session.stagedStep} onDiscard={this.props.unstageStep} onCommit={this.props.commitStagedStep} />

@@ -120,6 +120,17 @@ $white: #ffffff;
 
 .playback {
     border-bottom: solid 1px #e4e4e4;
+    >div {
+        float: left;
+        display: inline-block;
+        padding-top: 2px;
+        svg {
+            height: 18px;
+            margin: 6px 9px 0 15px;
+            fill: #424242;
+            width: 18px;
+        }
+    }
     h2 {
         background-color: #f1f1f1;
         margin: 0;
@@ -129,20 +140,38 @@ $white: #ffffff;
         border-bottom: solid 1px #e4e4e4
     }
     ul {
+        background-color: #ffffff;
         list-style-type: none;
         padding: 0;
         margin: 0;
-        font-size: 13px;
+        font-size: 12px;
         li {
-            padding: 7px 15px;            
+            -webkit-transition: padding 200ms linear;
+            -ms-transition: padding 200ms linear;
+            transition: padding 200ms linear;
+            cursor: pointer;
+            padding: 8px 15px;
+            border-bottom: solid 1px #f9f9f9;          
             >div {
-                float: left;
+                float: right;
                 display: inline-block;
                 padding-top: 2px;
                 svg {
+                    -webkit-transition: fill 200ms linear;
+                    -ms-transition: fill 200ms linear;
+                    transition: fill 200ms linear;
                     height: 15px;
                     margin-right: 10px;
                     fill: #97ceb4;
+                }
+            }
+            &:last-child {
+                border-bottom-width: 0;
+            }
+            &:hover {
+                padding-right: 8px;
+                >div svg {
+                    fill: $secondary-green;
                 }
             }
         }
