@@ -100,22 +100,23 @@ $white: #ffffff;
 .record-options {
     width: 100%;
     text-align: center;
-    .btn {
-        font-size: 13px;
-        border-radius: 2px;
-        margin: 13px auto;
-        display: inline-block;
-        padding: 0px 15px;
-        color: white; 
-        font-weight: bold;
-        text-transform: uppercase;   
-    }
-    .start-btn {
-        background-color: $secondary-green;
-    }
-    .stop-btn {
-        background-color: $secondary-red;
-    }
+}
+
+.btn {
+    font-size: 13px;
+    border-radius: 2px;
+    display: inline-block;
+    padding: 0px 15px;
+    color: white; 
+    font-weight: bold;
+    text-transform: uppercase; 
+    margin: 13px auto;
+}
+.start-btn {
+    background-color: $secondary-green;
+}
+.stop-btn {
+    background-color: $secondary-red;
 }
 
 .playback {

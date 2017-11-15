@@ -10,7 +10,7 @@ class Playback extends Component {
 
     render() {
         return (
-            <li className='row'>
+            <li className='row' onClick={this.props.onClick.bind(this, this.props.journey.id)}>
                 <span>{this.props.journey.name}</span>
                 <ReactSVG path={playIcon} />
             </li>

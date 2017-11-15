@@ -7,6 +7,9 @@ import {
   setMode,  
 } from 'state/modules/recording-sessions';
 import {
+  startSession as startPlaybackSession,  
+} from 'state/modules/playback-sessions';
+import {
   getRecentJourneys,
   setRecentJourneys,  
 } from 'state/modules/journeys';
@@ -20,22 +23,24 @@ class Menu extends Component {
     this.props.getRecentJourneys();
   }
 
-  isRecording() {
-    return this.props.recordingSessions &&
+  sessionFound(type) {
+    return this.props[type] &&
       this.props.currentTabId && 
-      this.props.recordingSessions[this.props.currentTabId];
+      this.props[type][this.props.currentTabId];
   }
 
   render() {
-    const isRecording = this.isRecording();
-
+    const isRecording = this.sessionFound('recordingSessions');
+    const isPlaying = this.sessionFound('playbackSessions');
     return (
         <div className='menu'>
             <div>
               {
-                !isRecording && <Playback journeys={this.props.recentJourneys} />
+                !isRecording && <Playback journeys={this.props.recentJourneys} isPlaying={isPlaying} playbackJourney={this.props.startPlackback(this.props.currentTabId)} />
               }
-              <RecordOptions isRecording={isRecording} startRecording={this.props.startSession(this.props.currentTabId)} stopRecording={this.props.stopRecording(this.props.currentTabId)} />
+              {
+                !isPlaying && <RecordOptions isRecording={isRecording} startRecording={this.props.startRecording(this.props.currentTabId)} stopRecording={this.props.stopRecording(this.props.currentTabId)} />
+              }
             </div>
         </div>
     );
@@ -45,17 +50,21 @@ class Menu extends Component {
 const mapStateToProps = (state) => {
   return {
     recordingSessions: state.recordingSessions,
+    playbackSessions: state.playbackSessions,
     recentJourneys: (state.journeys && state.journeys.recent) || [],
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    startSession: (tabId) => () => {
+    startRecording: (tabId) => () => {
       dispatch(startSession(tabId));
     },
     stopRecording: (tabId) => () => {
       dispatch(setMode(RECORD_MODES.SAVING, tabId));
+    },
+    startPlackback: (tabId) => (journeyId) => {
+      dispatch(startPlaybackSession(tabId, journeyId));
     },
     getRecentJourneys: () => {
       dispatch(getRecentJourneys()).then((journeys) => {

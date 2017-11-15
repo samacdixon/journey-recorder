@@ -10,17 +10,20 @@ class Playback extends Component {
     }
 
     render() {
-        var rows = this.props.journeys.map(journey => <Row journey={journey} />)
-        
-        return (
-            <div className='playback'>
-                <ReactSVG path={clockIcon} />
-                <h2>Recent Recordings</h2>
-                <ul>
-                    {rows}
-                </ul>
-            </div>
-        );
+        if (!this.props.isPlaying) {
+            const rows = this.props.journeys.map(journey => <Row journey={journey} onClick={this.props.playbackJourney} />)
+            
+            return (
+                <div className='playback'>
+                    <ReactSVG path={clockIcon} />
+                    <h2>Recent Recordings</h2>
+                    <ul>
+                        {rows}
+                    </ul>
+                </div>
+            );
+        }
+        return <div className='btn stop-btn' onClick={this.props.stopPlaying}>End Playback</div>
     }
 }
 
