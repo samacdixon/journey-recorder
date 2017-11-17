@@ -22,7 +22,7 @@ class Dock extends Component {
             <div className='mode'>
               <Control icon={navigateIcon} description="Navigate" isActive={this.props.session.currentMode === RECORD_MODES.NAVIGATE} onClick={this.props.setMode.bind(null, RECORD_MODES.NAVIGATE)} />
               <Control icon={locatorIcon} description="Locate Element" isActive={this.props.session.currentMode === RECORD_MODES.LOCATE} onClick={this.props.setMode.bind(null, RECORD_MODES.LOCATE)} />
-              <Control icon={screenshotIcon} description="Take a Screenshot" onClick={this.props.recordStep} />
+              <Control icon={screenshotIcon} description="Take a Screenshot" onClick={this.props.stageScreenshot} />
             </div>
             <div className='session'>
               <Control icon={stopIcon} description="Stop Recording" className={'stop'} onClick={this.props.stop} />

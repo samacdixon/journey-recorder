@@ -10,7 +10,7 @@ class App extends Component {
     return (
       <div className='jr-app'>
         <Recorder/>
-        <JourneyPlayer/>
+        {/* <JourneyPlayer/> */}
       </div>
     );
   }

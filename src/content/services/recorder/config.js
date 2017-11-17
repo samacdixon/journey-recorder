@@ -6,8 +6,10 @@ export const EVENTS = {
     STOPPED_RECORDING: `${prefix}STOPPED_RECORDING`,
 };
 
+// move to global config and rename to STEP_TYPES
 export const ACTION_TYPES = {
     CLICK: 'click',
     KEYPRESS: 'keypress',
     LOCATE: 'locate',
+    SCREENSHOT: 'screenshot',
 };

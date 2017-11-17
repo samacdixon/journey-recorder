@@ -22,6 +22,7 @@ import {
 } from 'state/modules/journeys';
 import {
   getTabId,
+  captureScreenshot,
 } from 'state/modules/chrome';
 import {
   RECORD_MODES,
@@ -85,10 +86,11 @@ class Recorder extends Component {
 
     const isRecording = this.pageRecorder.isActive();
     const isSaving = this.isSaving(session);
+    const isStaging = this.isStaging(session);
 
     if (!session.currentMode) { // start recording
       this.pageRecorder.setMode(DEFAULT_RECORD_MODE);   
-    } else if (!isRecording && !isSaving) { // page load/reload OR reverse mode (i.e. cancel 'stop recording')
+    } else if (!isRecording && !isSaving && !isStaging) { // page load/reload OR reverse mode (i.e. cancel 'stop recording')
       this.pageRecorder.setMode(session.currentMode);
     } else if (isRecording && isSaving) { // popup set mode to saving
       this.pageRecorder.stopRecording();
@@ -100,7 +102,7 @@ class Recorder extends Component {
     if (!session) return null;
     if (this.isSaving(session)) return <Saver onCancel={this.props.reverseMode} onDiscard={this.props.endSession.bind(null, null)} onSave={this.props.endSession.bind(null, this.activeSession().steps)} />;
     else if (this.isStaging(session)) return <Stager step={session.stagedStep} onDiscard={this.props.unstageStep} onCommit={this.props.commitStagedStep} />
-    return <Dock session={session} setMode={(mode) => this.pageRecorder.setMode(mode)} stop={() => this.pageRecorder.stopRecording()} />;
+    return <Dock session={session} setMode={(mode) => this.pageRecorder.setMode(mode)} stop={() => this.pageRecorder.stopRecording()} stageScreenshot={this.props.stageScreenshot} />;
   }
 }
 
@@ -133,6 +135,16 @@ const mapDispatchToProps = (dispatch) => {
         return dispatch(unstageStep());
       }).then(() => {
         dispatch(reverseMode());
+      });
+    },
+    stageScreenshot: () => {
+      dispatch(captureScreenshot()).then((dataUrl) => {
+        return dispatch(stageStep({ 
+          type: ACTION_TYPES.SCREENSHOT,
+          dataUrl,
+        }));
+      }).then(() => {
+        dispatch(setMode(RECORD_MODES.STAGING));
       });
     },
     setMode: (mode) =>  dispatch(setMode(mode)),

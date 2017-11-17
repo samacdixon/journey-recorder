@@ -42,7 +42,5 @@ export function getCurrentTabId(){
 } 
 
 export function takeScreenshot(){
-    return chromep.tabs.captureVisibleTab({
-        format: 'jpeg'
-    });
+    return chromep.tabs.captureVisibleTab();
 }

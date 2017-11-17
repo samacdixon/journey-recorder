@@ -10,7 +10,11 @@ export const aliases = {
     return action;
   },
   [CAPTURE_SCREENSHOT]: (action) => {
-    action.promise = takeScreenshot();
+    action.promise = takeScreenshot().then((dataUrl) => {
+      return { 
+        payload: dataUrl 
+      };
+    });
     return action;
   },
 }
@@ -19,5 +23,11 @@ export const aliases = {
 export function getTabId() {
   return {
     type: GET_TAB_ID,
+  };
+}
+
+export function captureScreenshot() {
+  return {
+    type: CAPTURE_SCREENSHOT,
   };
 }
